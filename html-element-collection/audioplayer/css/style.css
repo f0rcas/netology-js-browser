@@ -258,8 +258,7 @@ audio {
 	background-color: #C63C3C;
 }
 
-.playstate .fa-pause,
-.mediaplayer.play .playstate .fa-play {
+.playstate .fa-pause, .mediaplayer.play .playstate .fa-play {
 	display: none;
 }
 
