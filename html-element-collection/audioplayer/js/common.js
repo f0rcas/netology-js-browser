@@ -34,19 +34,19 @@ buttonNext.onclick = function () {
 		item = 0;
 		title.title = tracksTitle[item];
 		audio.src = tracks[item];
-  }
+	}
 }
 
 buttonBack.onclick = function () {
 	player.classList.remove('play');
 	if (item > 0) {
-  	item--;
+		item--;
 		title.title = tracksTitle[item];
 		audio.src = tracks[item];
 	}
 	else {
-    item = tracks.length-1;
-    title.title = tracksTitle[item];
+		item = tracks.length-1;
+		title.title = tracksTitle[item];
 		audio.src = tracks[item];
-  }
+	}
 }
