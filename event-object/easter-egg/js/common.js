@@ -18,7 +18,7 @@ function surprise(event) {
   code = code.substr(-keyCode.length);
   console.log(code);
   if (code === keyCode) {
-    secretcode.classList.add('visible');
+    secret.classList.add('visible');
   }
 }
 
