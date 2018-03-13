@@ -2,6 +2,8 @@
 
 const menu = document.getElementsByTagName('nav')[0];
 const secret = document.getElementsByClassName('secret')[0];
+const keyCode = "KeyYKeyTKeyNKeyJKeyKKeyJKeyUKeyBKeyZ";
+let code = '';
 
 function menuOpen(event) {
 	if (event.ctrlKey && event.altKey && event.code === 'KeyT') {
@@ -12,9 +14,12 @@ function menuOpen(event) {
 }
 
 function surprise(event) {
-	if ((event.code === 'KeyY') && (event.code === 'KeyT')) {
-		secret.classList.toggle('visible');
-	}
+  code += event.code;
+  code = code.substr(-keyCode.length);
+  console.log(code);
+  if (code === keyCode) {
+    secretcode.classList.add('visible');
+  }
 }
 
 document.addEventListener('keydown', menuOpen);

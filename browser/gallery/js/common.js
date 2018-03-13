@@ -7,25 +7,24 @@ const images = ['./i/breuer-building.jpg', './i/guggenheim-museum.jpg', './i/hea
 
 let item = -1;
 
-img.src = images[item];
-
 nextPhoto.onclick = function() {
+//  img.src = images[item];
   if (item < images.length - 1) {
     item++;
-    
-  }
-  else {
+    img.src = images[item];
+  } else {
     item = 0;
-
+    img.src = images[item];
   }
 }
 
 prevPhoto.onclick = function() {
-if (item > 0) {
+//  img.src = images[item];
+  if (item > 0) {
   item--;
-
-}  else {
+  img.src = images[item];
+  } else {
     item = images.length-1;
-
+    img.src = images[item];
   }
 }
