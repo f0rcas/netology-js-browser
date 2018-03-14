@@ -24,7 +24,6 @@ buttonStop.onclick = function () {
 }
 
 buttonNext.onclick = function () {
-	player.classList.remove('play');
 	if (item < tracks.length - 1) {
 		item++;
 		title.title = tracksTitle[item];
@@ -38,7 +37,6 @@ buttonNext.onclick = function () {
 }
 
 buttonBack.onclick = function () {
-	player.classList.remove('play');
 	if (item > 0) {
 		item--;
 		title.title = tracksTitle[item];
