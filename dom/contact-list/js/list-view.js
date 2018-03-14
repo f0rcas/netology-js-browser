@@ -33,6 +33,12 @@ function init() {
   container = document.getElementById('container');
   container.querySelector('.list-view').addEventListener('click', contactClick);
   container.querySelector('.back').addEventListener('click', backClick);
+  // code
+  const contacts = JSON.parse(loadContacts());
+  const contactsList = document.querySelector('.contacts-list');
+  contactsList.innerHTML = contacts.reduce(function(list, contact) {
+    return `${list}<li data-email="${contact.email}" data-phone="${contact.phone}"><strong>${contact.name}</strong></li>`;
+  }, '');
 }
 
 document.addEventListener('DOMContentLoaded', init);
