@@ -1,62 +1,51 @@
 'use strict';
 
-let preloader = document.getElementById('preloader'),
-    content = document.getElementById('content'),
-    email = document.querySelector("a[href='email-tab.html']"),
-    sms = document.querySelector("a[href='sms-tab.html']"),
-    xhrSms = new XMLHttpRequest(),
-    strEmail = '';
-    strSms = '';
-	xhrEmail = new XMLHttpRequest();
-
-xhrEmail.addEventListener("load", onLoadEmail);
-xhrEmail.addEventListener("loadstart", onLoadStart);
-xhrEmail.addEventListener("loadend", onLoadEnd);
-xhrSms.addEventListener("load", onLoadSms);
-xhrSms.addEventListener("loadstart", onLoadStart);
-xhrSms.addEventListener("loadend", onLoadEnd);
-
-email.addEventListener("click", function (e) {
-	e.preventDefault();
-	if(!this.classList.contains('active')){
-      xhrEmail.open("GET", "email-tab.html");
-			xhrEmail.send();
-			onLoadEmail();
-    }
-	this.classList.add('active');
-	sms.classList.remove('active');
-});
+const tabs = document.querySelectorAll('nav > a'); // все табы
+const preloader = document.getElementById('preloader'); // убирать класс hidden
+const content = document.getElementById('content');
 
 
-sms.addEventListener("click", function (e) {
-	e.preventDefault();
-	if(!this.classList.contains('active')){
-      xhrSms.open("GET", "sms-tab.html");
-			xhrSms.send();
-			onLoadSms();
-    }
-  this.classList.add('active');
-	email.classList.remove('active');
-});
-
-
-
-xhrEmail.open("GET", "email-tab.html");
-xhrEmail.send();
-
-
-function onLoadEmail() {
-	content.innerHTML = xhrEmail.responseText;
-}
-
-function onLoadSms() {
-	content.innerHTML = xhrSms.responseText;
-}
-
-function onLoadStart() {
+function startLoad() {
   preloader.classList.remove('hidden');
 }
 
-function onLoadEnd() {
+function endLoad() {
   preloader.classList.add('hidden');
 }
+
+
+const request = new XMLHttpRequest();
+
+request.addEventListener('loadstart', startLoad);
+request.addEventListener('loadend', endLoad);
+request.addEventListener('load', function() {
+  let data = request.responseText;
+  content.innerHTML = data;
+  });
+
+
+function email() {
+  request.open("GET", tabs[0].href, true);
+  request.send();
+}
+
+function openTab(event) {
+  event.preventDefault();
+  if (this.classList.contains('active')) {
+    return;
+  } else {
+    this.classList.add('active');
+  }
+  for (const tab of tabs) {
+    tab.classList.remove('active');
+  }
+  request.open("GET", this.href, true);
+  request.send();
+}
+
+
+for (const tab of tabs) {
+  tab.addEventListener('click', openTab);
+}
+
+document.addEventListener('DOMContentLoaded', email);
