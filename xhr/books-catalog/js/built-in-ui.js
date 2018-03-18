@@ -26,3 +26,21 @@ document.getElementById('content').addEventListener('click', (event) => {
       document.getElementById('card-price').innerHTML = target.dataset.price;
     }
 });
+
+const contentList = document.querySelector('#content');
+
+const request = new XMLHttpRequest();
+request.addEventListener("load", onLoad);
+request.open("GET",
+ "https://neto-api.herokuapp.com/book/",
+ true);
+request.send();
+
+function onLoad() {
+  let firstBook = document.querySelector('li');
+  let database = JSON.parse(request.responseText);
+  
+  contentList.innerHTML = database.reduce(function(firstBook, data) {
+    return `${firstBook}<li data-title="${data.title}" data-author="${data.author.name}" data-info="${data.info}" data-price="${data.price}"><img src="${data.cover.small}"> </li>`;
+  }, '');
+}
