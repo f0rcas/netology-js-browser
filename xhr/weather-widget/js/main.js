@@ -5,3 +5,10 @@ if (request.status === 200) {
   const response = JSON.parse(request.responseText);
   setData(response);
 }
+
+function onLoad() {
+  if (request.status === 200) {
+    const response = JSON.parse(request.responseText);
+    setData(response);
+  }
+}
