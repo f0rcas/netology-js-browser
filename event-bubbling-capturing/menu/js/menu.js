@@ -1,5 +1,8 @@
 'use strict';
 
+const dropdownPart = document.querySelectorAll('.dropdown');
+const liLinks = document.querySelectorAll('a[data-toggle=dropdown]');
+
 function toggleMenu(event) {
   if (this.classList.contains('show')) {
     this.classList.remove('show');
@@ -11,7 +14,11 @@ function toggleMenu(event) {
 }
 
 function openLink(event) {
-  console.log(this.textContent);
+  if (event.target.dataset.toggle) {
+    return;
+  } 
+  event.preventDefault(); 
+  console.log(event.target.textContent);
 }
 
 function init(node) {
