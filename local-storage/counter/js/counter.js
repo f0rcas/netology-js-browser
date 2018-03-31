@@ -1,6 +1,6 @@
 'use strict';
 
-onst value = document.querySelector('#counter');
+const value = document.querySelector('#counter');
 const buttons = document.querySelectorAll('button');
 const buttonIncrement = document.querySelector('#increment');
 const buttonDecrement = document.querySelector('#decrement');
